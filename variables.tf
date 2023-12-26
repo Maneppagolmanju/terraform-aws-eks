@@ -23,7 +23,7 @@ variable "prefix_separator" {
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
-  default     = ""
+  default     = "Multi-Juicer"
 }
 
 variable "cluster_version" {
@@ -137,7 +137,7 @@ variable "cluster_timeouts" {
 variable "create_kms_key" {
   description = "Controls if a KMS key for cluster encryption should be created"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "kms_key_description" {
@@ -155,7 +155,7 @@ variable "kms_key_deletion_window_in_days" {
 variable "enable_kms_key_rotation" {
   description = "Specifies whether key rotation is enabled. Defaults to `true`"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "kms_key_enable_default_policy" {
@@ -213,7 +213,7 @@ variable "kms_key_aliases" {
 variable "create_cloudwatch_log_group" {
   description = "Determines whether a log group is created by this module for the cluster logs. If not, AWS will automatically create one if logging is enabled"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "cloudwatch_log_group_retention_in_days" {
@@ -259,7 +259,7 @@ variable "vpc_id" {
 variable "cluster_security_group_name" {
   description = "Name to use on cluster security group created"
   type        = string
-  default     = null
+  default     = eks-ingress
 }
 
 variable "cluster_security_group_use_name_prefix" {
@@ -383,19 +383,19 @@ variable "custom_oidc_thumbprints" {
 variable "create_iam_role" {
   description = "Determines whether a an IAM role is created or to use an existing IAM role"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "iam_role_arn" {
   description = "Existing IAM role ARN for the cluster. Required if `create_iam_role` is set to `false`"
   type        = string
-  default     = null
+  default     = arn:aws:iam::408706749659:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS
 }
 
 variable "iam_role_name" {
   description = "Name to use on IAM role created"
   type        = string
-  default     = null
+  default     = AWSServiceRoleForAmazonEKS
 }
 
 variable "iam_role_use_name_prefix" {
